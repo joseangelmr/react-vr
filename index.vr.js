@@ -6,26 +6,29 @@ import {
   Pano,
   Text,
   View,
+  Model,
+  PointLight,
 } from 'react-vr';
 
 export default class reactVR extends React.Component {
   render() {
     return (
       <View>
+        <PointLight
+          style={{ color: 'white', transform: [{ translate: [0, 400, 700] }] }}
+        />
         <Pano source={asset('chess-world.jpg')}/>
-        <Text
+        <Model
           style={{
-            fontSize: 0.8,
-            fontWeight: '400',
-            layoutOrigin: [0.5, 0.5],
-            paddingLeft: 0.2,
-            paddingRight: 0.2,
-            textAlign: 'center',
-            textAlignVertical: 'center',
-            transform: [{translate: [0, 0, -3]}],
-          }}>
-          Hello World
-        </Text>
+            transform: [
+              { translate: [0, -5, -20] },
+              { rotateY: -30 },
+              { rotateX: -40 },
+            ],
+          }}
+          source={{ obj: asset('box.obj'), mtl: asset('box.mtl') }}
+          lit
+        />
       </View>
     );
   }
